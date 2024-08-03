@@ -10,8 +10,8 @@ export default function Header() {
           <li className="hidden sm:block px-4 lg:p-10">Marketing</li> */}
           <li>
             <Image
-              src="/Images/logo.png"
-              alt="NattyNYC Blog"
+              src="/images/logo.png"
+              alt="Buzz N Finds"
               width={250}
               height={150}
               className="p-1 max-w-full h-auto"
