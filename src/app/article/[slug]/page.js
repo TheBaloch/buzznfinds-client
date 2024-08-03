@@ -1,8 +1,6 @@
 import Image from "next/image";
 import styles from "./style.module.css";
 
-const imagedomain = process.env.NEXT_PUBLIC_IMAGES;
-
 async function fetchBlog(slug) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API}/blog/${slug}`, {
     cache: "force-cache",
@@ -25,11 +23,11 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: SEO?.OGtitle,
       description: SEO?.OGdescription,
-      url: `https://blog.nattynyc.com/post/${data?.slug}`,
-      siteName: "Natty NYC Blogs",
+      url: `https://buzznfinds.com/article/${data?.slug}`,
+      siteName: "Buzz N Finds",
       images: [
         {
-          url: imagedomain + "/" + "skincare.png",
+          url: data?.mainImage,
           width: 800,
           height: 450,
         },
@@ -42,15 +40,18 @@ export async function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const data = await fetchBlog(params?.slug);
-  if (data)
+  const name = data?.author?.name?.split(" ");
+  const authorInit = name ? name[0][0] + name[1][0] : "NA";
+
+  if (data) {
     return (
       <>
-        <div className="container px-8 mx-auto max-w-screen-lg py-5 lg:py-8">
+        <div className="container px-7 mx-auto max-w-screen-lg py-4 lg:py-7">
           <div className="mx-auto max-w-screen-md">
             <div className="flex justify-center">
               <div className="flex gap-3">
                 <a href="#">
-                  <span className="inline-block text-xs font-medium tracking-wider uppercase mt-5 text-blue-600">
+                  <span className="inline-block text-xs font-2xl tracking-wider uppercase mt-5 text-yellow-500">
                     {data?.category?.category}
                   </span>
                 </a>
@@ -59,14 +60,14 @@ export default async function Page({ params }) {
             <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug">
               {data?.title}
             </h1>
-            <h2 className="text-brand-primary mb-3 mt-2 text-center text-lg  lg:text-1xl lg:leading-snug">
+            <h2 className="text-brand-primary mb-3 mt-2 text-center text-lg lg:text-xl lg:leading-snug">
               {data?.subtitle}
             </h2>
           </div>
-          <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8">
+          <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8 mt-8">
             <Image
-              src={imagedomain + "/" + data?.mainImage}
-              alt={data?.title}
+              src={data?.mainImage}
+              alt={data?.title || "Blog image"}
               sizes="(max-width: 768px) 100vw, 800px"
               width={800}
               height={450}
@@ -84,20 +85,27 @@ export default async function Page({ params }) {
             />
             <div className={styles.authorSection}>
               <p id="author" className={styles.authorName}>
-                {data?.content?.Author?.name}
+                {authorInit}
               </p>
               <p id="author-bio" className={styles.authorAbout}>
-                {data?.content?.Author?.about}
+                {data?.author?.about}
               </p>
             </div>
           </article>
         </div>
       </>
     );
-  else
+  } else {
     return (
-      <>
-        <h1>Problem</h1>
-      </>
+      <div className="container px-8 mx-auto max-w-screen-lg py-5 lg:py-8 min-h-screen">
+        <h1 className="text-center text-3xl font-semibold text-red-600">
+          Error: Blog post not found
+        </h1>
+        <p className="text-center text-lg mt-3">
+          We couldn&apos;t find the blog post you&apos;re looking for. Please
+          try again later.
+        </p>
+      </div>
     );
+  }
 }

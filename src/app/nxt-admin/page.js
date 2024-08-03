@@ -10,7 +10,7 @@ export default function Page() {
         <div className="flex-1">
           <div className="container mx-auto">
             <h1 className="text-2xl font-bold">Page</h1>
-            <p className="mt-4">The page's content displayed</p>
+            <p className="mt-4">The page content displayed</p>
           </div>
         </div>
       </div>
