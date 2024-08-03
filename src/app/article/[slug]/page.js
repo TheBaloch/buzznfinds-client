@@ -16,13 +16,13 @@ export async function generateMetadata({ params }) {
   const data = await fetchBlog(params?.slug);
   const SEO = data?.content?.SEO;
   return {
-    title: data?.title,
-    description: SEO?.metaDescription,
-    keywords: SEO?.metaKeywords,
-    authors: [{ name: data?.content?.Author?.name }],
+    title: data?.title || "Blog Post",
+    description: SEO?.metaDescription || "Blog post description",
+    keywords: SEO?.metaKeywords || "blog, post",
+    authors: [{ name: data?.author?.name || "Author" }],
     openGraph: {
-      title: SEO?.OGtitle,
-      description: SEO?.OGdescription,
+      title: SEO?.OGtitle || data?.title,
+      description: SEO?.OGdescription || SEO?.metaDescription,
       url: `https://buzznfinds.com/article/${data?.slug}`,
       siteName: "Buzz N Finds",
       images: [
@@ -35,6 +35,8 @@ export async function generateMetadata({ params }) {
       locale: "en_US",
       type: "article",
     },
+    robots: "index, follow",
+    canonical: `https://buzznfinds.com/article/${data?.slug}`,
   };
 }
 
