@@ -8,8 +8,8 @@ export default function Footer1() {
           <Image
             src="/images/logo.png"
             alt="Buzz N Finds"
-            width={250}
-            height={150}
+            width={230}
+            height={63}
             className="p-1 max-w-full h-auto"
             loading="eager"
           />
