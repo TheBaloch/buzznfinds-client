@@ -53,7 +53,7 @@ export default async function Page({ params }) {
             <div className="flex justify-center">
               <div className="flex gap-3">
                 <a href="#">
-                  <span className="inline-block text-xs font-2xl tracking-wider uppercase mt-5 text-yellow-500">
+                  <span className="inline-block text-xs font-2xl tracking-wider uppercase mt-5 text-blue-600">
                     {data?.category?.category}
                   </span>
                 </a>
