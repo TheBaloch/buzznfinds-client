@@ -1,4 +1,5 @@
 import Blogs from "@/components/blog/blogs/blogs";
+import CategoryBlock from "@/components/category/categoryBlock";
 import MainBlogs from "@/components/mainblogs/mainblogs";
 
 export const metadata = {
@@ -32,6 +33,7 @@ export default function Home() {
   return (
     <main>
       <MainBlogs />
+      <CategoryBlock />
       <Blogs />
     </main>
   );
