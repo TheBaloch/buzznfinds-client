@@ -1,6 +1,6 @@
-import Blogs from "@/components/blog/blogs/blogs";
+import LatestBlogs from "@/components/blog/latestBlogs";
+import AllCategoryBlock from "@/components/category/allCategoryBlock";
 import CategoryBlock from "@/components/category/categoryBlock";
-import MainBlogs from "@/components/mainblogs/mainblogs";
 
 export const metadata = {
   title: "Buzz N Finds - Discover the Best Trends, Tips, and Reviews",
@@ -20,6 +20,7 @@ export const metadata = {
         url: "https://buzznfinds.com/images/logo.png",
         width: 230,
         height: 63,
+        alt: "Buzz N Finds logo",
       },
     ],
     locale: "en_US",
@@ -32,9 +33,9 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
-      <MainBlogs />
-      <CategoryBlock />
-      <Blogs />
+      <LatestBlogs limit={9} />
+      <AllCategoryBlock />
+      <CategoryBlock category={"technology"} limit={6} />
     </main>
   );
 }

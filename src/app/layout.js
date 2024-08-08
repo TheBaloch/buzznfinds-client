@@ -1,12 +1,7 @@
 import { GoogleTagManager } from "@next/third-parties/google";
-import Footer1 from "@/components/footer1/footer1";
-import Header from "@/components/header/header";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar/navbar";
 import Footer from "@/components/layout/footer/footer";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Buzz N Finds",

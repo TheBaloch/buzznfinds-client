@@ -3,19 +3,8 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-4 md:px-0 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="space-y-4">
-          <h4 className="text-lg font-bold">About</h4>
-          <p>Learn more about our company and our mission.</p>
-          <Link
-            href="#"
-            className="text-blue-500 hover:underline"
-            prefetch={false}
-          >
-            Read More
-          </Link>
-        </div>
-        <div className="space-y-4">
+      <div className="container mx-auto px-4 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* <div className="space-y-4">
           <h4 className="text-lg font-bold">Services</h4>
           <ul className="space-y-2">
             <li>
@@ -39,69 +28,69 @@ export default function Footer() {
               </Link>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="space-y-4">
-          <h4 className="text-lg font-bold">Resources</h4>
+          <h3 className="text-lg font-bold">Categories</h3>
           <ul className="space-y-2">
             <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Blog
+              <Link
+                href="/technology"
+                className="hover:text-gray-400"
+                prefetch={false}
+              >
+                Technology
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                FAQ
+              <Link
+                href="/artificial-intelligence"
+                className="hover:text-gray-400"
+                prefetch={false}
+              >
+                Artificial Intelligence
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Support
+              <Link
+                href="/entertainment-technology"
+                className="hover:text-gray-400"
+                prefetch={false}
+              >
+                Entertainment Technology
               </Link>
             </li>
             <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Terms of Service
+              <Link
+                href="/blockchain-technology"
+                className="hover:text-gray-400"
+                prefetch={false}
+              >
+                Blockchain Technology
               </Link>
             </li>
           </ul>
         </div>
         <div className="space-y-4">
-          <h4 className="text-lg font-bold">Contact</h4>
+          <h3 className="text-lg font-bold">Resources</h3>
           <p>Get in touch with us for more information.</p>
-          <div className="flex space-x-4">
-            <Link
-              href="#"
-              className="text-blue-500 hover:underline"
-              prefetch={false}
-            >
-              <MailIcon className="w-6 h-6" />
-            </Link>
-            <Link
-              href="#"
-              className="text-blue-500 hover:underline"
-              prefetch={false}
-            >
-              <PhoneIcon className="w-6 h-6" />
-            </Link>
-            <Link
-              href="#"
-              className="text-blue-500 hover:underline"
-              prefetch={false}
-            >
-              <TwitterIcon className="w-6 h-6" />
-            </Link>
-            <Link
-              href="#"
-              className="text-blue-500 hover:underline"
-              prefetch={false}
-            >
-              <LinkedinIcon className="w-6 h-6" />
-            </Link>
-          </div>
+          <div className="flex space-x-4"></div>
+        </div>
+        <div className="space-y-4">
+          <h3 className="text-lg font-bold">About</h3>
+          <p>
+            Welcome to BuzzNFinds, your ultimate destination for discovering the
+            latest trends, top-selling products, and insider tips. We’re here to
+            keep you in the loop with fresh insights and exciting finds that
+            make your life easier and more enjoyable. Whether you’re hunting for
+            the hottest gadgets, fashion essentials, or must-have home items,
+            BuzzNFinds has you covered. Join us on this journey of exploration
+            and let’s find what’s buzzing together!
+          </p>
         </div>
       </div>
+
       <div className="container mx-auto px-4 md:px-0 mt-8 text-center text-gray-400">
-        &copy; 2024 anly. All rights reserved.
+        &copy; 2024 BuzzNFinds. All rights reserved.
       </div>
     </footer>
   );

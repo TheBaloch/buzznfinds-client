@@ -1,96 +1,71 @@
-export default function CategoryBlock() {
+import Image from "next/image";
+import Link from "next/link";
+
+async function getCategoryBlogs(category, limit) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}`,
+    {
+      // cache: "force-cache",
+      next: { revalidate: 86000 },
+    }
+  );
+  if (!res.ok) {
+    return null;
+  }
+  return res.json();
+}
+
+export default async function CategoryBlock({ category, limit }) {
+  const data = await getCategoryBlogs(category, limit);
+  //console.log(data);
   return (
     <>
-      <section class="px-4 py-8">
-        <div class="flex justify-between items-center mb-6">
-          <h2 class="text-3xl font-bold">Technology</h2>
-          <a href="#" class="text-blue-600 hover:underline" rel="ugc">
-            More in Technology →
-          </a>
+      <section className="px-4 py-8 mb-20">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold">{data?.category}</h2>
+          <Link
+            href={`/${data?.slug}`}
+            className="text-blue-600 hover:underline"
+            rel="ugc"
+          >
+            More in {data?.category} →
+          </Link>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="space-y-4">
-            <img
-              src="https://images.buzznfinds.com/images/ai-revolution-gpt-4-5525532.webp"
-              alt="A Lesson From the Henrietta Lacks Story: Science Needs Your Cells"
-              class="w-full h-auto"
-              width="400"
-              height="300"
-              style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
-            />
-            <h3 class="text-xl font-semibold">
-              A Lesson From the Henrietta Lacks Story: Science Needs Your Cells
-            </h3>
-            <div class="text-gray-600">
-              <span>akbarh</span> <span>•</span> <span>July 7, 2021</span>
-            </div>
-            <p class="text-gray-700">
-              Cursus iaculis etiam in In nullam donec sem sed consequat
-              scelerisque nibh ...
-            </p>
-          </div>
-          <div class="space-y-4">
-            <img
-              src="https://images.buzznfinds.com/images/5g-network-rollout-2024-5896377.webp"
-              alt="What Moves Gravel-Size Gypsum Crystals Around the Desert?"
-              class="w-full h-auto"
-              width="400"
-              height="300"
-              style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
-            />
-            <h3 class="text-xl font-semibold">
-              What Moves Gravel-Size Gypsum Crystals Around the Desert?
-            </h3>
-            <div class="text-gray-600">
-              <span>akbarh</span> <span>•</span> <span>July 7, 2021</span>
-            </div>
-            <p class="text-gray-700">
-              Cursus iaculis etiam in In nullam donec sem sed consequat
-              scelerisque nibh ...
-            </p>
-          </div>
-          <div class="space-y-4">
-            <img
-              src="https://images.buzznfinds.com/images/quantum-computing-2024-5644420.webp"
-              alt="Scientists, Feeling Under Siege, March Against Trump Policies"
-              class="w-full h-auto"
-              width="400"
-              height="300"
-              style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
-            />
-            <h3 class="text-xl font-semibold">
-              Scientists, Feeling Under Siege, March Against Trump Policies
-            </h3>
-            <div class="text-gray-600">
-              <span>akbarh</span> <span>•</span> <span>July 7, 2021</span>
-            </div>
-            <p class="text-gray-700">
-              Cursus iaculis etiam in In nullam donec sem sed consequat
-              scelerisque nibh ...
-            </p>
-          </div>
-          <div class="space-y-4">
-            <img
-              src="https://images.buzznfinds.com/images/quantum-computing-2024-5644420.webp"
-              alt="Scientists, Feeling Under Siege, March Against Trump Policies"
-              class="w-full h-auto"
-              width="400"
-              height="300"
-              style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
-            />
-            <h3 class="text-xl font-semibold">
-              Scientists, Feeling Under Siege, March Against Trump Policies
-            </h3>
-            <div class="text-gray-600">
-              <span>akbarh</span> <span>•</span> <span>July 7, 2021</span>
-            </div>
-            <p class="text-gray-700">
-              Cursus iaculis etiam in In nullam donec sem sed consequat
-              scelerisque nibh ...
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {data?.blogs?.map((blog, index) => (
+            <Link key={index} href={`/article/${blog?.slug}`} className="group">
+              <div className="space-y-4 mt-10">
+                <div className="overflow-hidden rounded-lg">
+                  <Image
+                    src={blog?.mainImage}
+                    alt={blog?.title}
+                    className="w-full h-auto transition-all duration-300 group-hover:scale-105"
+                    width="400"
+                    height="300"
+                    style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
+                  />
+                </div>
+                <h3 className="text-xl font-semibold group-hover:underline">
+                  {blog?.title}
+                </h3>
+
+                <div className="text-gray-600">
+                  <span>{blog?.author?.name}</span> <span>•</span>{" "}
+                  <span>{formatDate(blog?.createdAt)}</span>
+                </div>
+                <p className="text-gray-700">{blog?.subtitle}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </>
   );
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return `${date.toLocaleString("default", {
+    month: "long",
+  })} ${date.getDate()}, ${date.getFullYear()}`;
 }

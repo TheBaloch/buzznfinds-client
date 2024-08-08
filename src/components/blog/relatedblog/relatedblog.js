@@ -1,36 +1,92 @@
-export default function RelatedBlog({ relatedblog }) {
-    return (
-    
-          <div >
-            <div className="mx-auto  px-2 sm:px-4 lg:px-32">
-           
-              <div className="mx-auto max-w-2xl py-16 sm:py-12 lg:max-w-none lg:py-24"> 
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900 pb-2">Related Blog</h2>                <div className="mt-2 space-y-8 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-y-0">
-                  
-                  {relatedblog?.map((callouts) => (
-                    <div key={callouts.name} className="group relative">
-                      <div className="relative h-86 w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75">
-                        <img
-                          src={callouts.imageSrc}
-                          alt={callouts.imageAlt}
-                          className="h-full w-full object-cover object-center"
-                        />
-                      </div>
-                      <h3 className="mt-6 text-sm text-gray-500">
-                        <a href={callouts.href}>
-                          <span className="absolute inset-0" />
-                          {callouts.name}
-                        </a>
-                      </h3>
-                      <p className="text-xl font-bold text-gray-900">{callouts.description}</p>
-                     
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-     
-    );
+import Image from "next/image";
+import Link from "next/link";
+
+async function getCategoryBlogs(category, limit, blogslug) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit + 1}`,
+    {
+      next: { revalidate: 86000 },
+    }
+  );
+  if (!res.ok) {
+    return null;
   }
-  
+  const data = await res.json();
+  const blogs = Array(...data?.blogs);
+
+  //remove the current blog from related
+  let index = blogs?.findIndex((blog) => blog.slug === blogslug);
+  if (index !== -1) {
+    blogs?.splice(index, 1);
+  }
+
+  //if blogs are less than the limit then fetch more from latest
+  if (blogs.length < limit) {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API}/blog/latest?limit=${
+        limit + 1 - blogs.length
+      }`,
+      {
+        next: { revalidate: 86000 },
+      }
+    );
+    const latest = await res.json();
+    blogs.push(...latest?.data);
+  }
+
+  //remove the current blog from related again
+  index = blogs?.findIndex((blog) => blog.slug === blogslug);
+  if (index !== -1) {
+    blogs?.splice(index, 1);
+  }
+  if (blogs.length > limit) blogs.length = limit;
+  return blogs;
+}
+
+export default async function RelatedBlogs({ category, limit, blogslug }) {
+  const data = await getCategoryBlogs(category, limit, blogslug);
+  //console.log(data);
+  return (
+    <>
+      <section className="px-4 py-8 mb-20">
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-3xl font-bold">Explore more . . .</h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {data?.map((blog, index) => (
+            <Link key={index} href={`/article/${blog?.slug}`} className="group">
+              <div className="space-y-4 mt-10">
+                <div className="overflow-hidden rounded-lg">
+                  <Image
+                    src={blog?.mainImage}
+                    alt={blog?.title}
+                    className="w-full h-auto transition-all duration-300 group-hover:scale-105"
+                    width="400"
+                    height="300"
+                    style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
+                  />
+                </div>
+                <h3 className="text-xl font-semibold group-hover:underline">
+                  {blog?.title}
+                </h3>
+
+                <div className="text-gray-600">
+                  <span>{blog?.author?.name}</span> <span>•</span>{" "}
+                  <span>{formatDate(blog?.createdAt)}</span>
+                </div>
+                <p className="text-gray-700">{blog?.subtitle}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
+  );
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  return `${date.toLocaleString("default", {
+    month: "long",
+  })} ${date.getDate()}, ${date.getFullYear()}`;
+}
