@@ -106,8 +106,8 @@ export default async function Page({ params }) {
       <div className="flex flex-col items-center p-6 justify-center">
         <h3 className="text-2xl font-bold text-gray-800">Oopsie Daisy!</h3>
         <h4 className="mt-4 text-gray-600 text-lg">
-          Looks like you've wandered off the trail. But don’t worry! Give the
-          bear a pook and find your way back!
+          Looks like you&apos;ve wandered off the trail. But don&apos;t worry!
+          Give the bear a pook and find your way back!
         </h4>
         <Link href="/">
           <Image

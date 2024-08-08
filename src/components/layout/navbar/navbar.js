@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center p-4">
@@ -15,7 +17,7 @@ export default function Navbar() {
         }
       >
         <div className="flex items-center space-x-5">
-          <Link href="/">
+          <Link href="/" onClick={() => setIsMenuOpen(false)}>
             <span className="text-2xl font-bold">Buzz N Finds</span>
           </Link>
         </div>
@@ -36,12 +38,14 @@ export default function Navbar() {
           <Link
             href="/"
             className="block py-2 text-xl hover:text-gray-400  border-b border-gray-150 shadow-sm"
+            onClick={() => setIsMenuOpen(false)}
           >
             Home
           </Link>
           <Link
             href="/technology"
             className="block py-2 text-xl hover:text-gray-400  border-b border-gray-150 shadow-sm"
+            onClick={() => setIsMenuOpen(false)}
             prefetch={false}
           >
             Technology
@@ -49,6 +53,7 @@ export default function Navbar() {
           <Link
             href="/artificial-intelligence"
             className="block py-2 text-xl hover:text-gray-400 border-b border-gray-150 shadow-sm"
+            onClick={() => setIsMenuOpen(false)}
             prefetch={false}
           >
             Artificial Intelligence
@@ -56,6 +61,7 @@ export default function Navbar() {
           <Link
             href="/entertainment-technology"
             className="block py-2 text-xl hover:text-gray-400  border-b border-gray-150 shadow-sm"
+            onClick={() => setIsMenuOpen(false)}
             prefetch={false}
           >
             Entertainment Technology
@@ -63,6 +69,7 @@ export default function Navbar() {
           <Link
             href="/blockchain-technology"
             className="block py-2 text-xl hover:text-gray-400 shadow-sm"
+            onClick={() => setIsMenuOpen(false)}
             prefetch={false}
           >
             Blockchain Technology
