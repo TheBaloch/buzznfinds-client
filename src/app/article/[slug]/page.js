@@ -48,7 +48,7 @@ export default async function Page({ params }) {
   if (data) {
     return (
       <>
-        <div className="container px-7 mx-auto max-w-screen-lg py-4 lg:py-7">
+        <div className="container  mx-auto max-w-screen-lg py-2 px-2 lg:py-7 md:px-7 lg:px-7">
           <div className="mx-auto max-w-screen-md">
             <div className="flex justify-center">
               <div className="flex gap-3">
