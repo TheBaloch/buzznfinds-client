@@ -7,7 +7,8 @@ export default function Page() {
       <div className="flex flex-col items-center p-6 justify-center">
         <h3 className="text-2xl font-bold text-gray-800">Hmmmmm...</h3>
         <h4 className="mt-4 text-gray-600 text-lg">
-          You're not so far from home, buddy. Let the hamster guide you back!
+          You&apos;re not so far from home, buddy. Let the hamster guide you
+          back!
         </h4>
         <div>
           <Link href="/">
