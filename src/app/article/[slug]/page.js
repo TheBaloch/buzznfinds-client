@@ -18,6 +18,7 @@ export async function generateMetadata({ params }) {
   const data = await fetchBlog(params?.slug);
   const SEO = data?.content?.SEO;
   return {
+    metadataBase: new URL("https://buzznfinds.com"),
     title: data?.title || "Blog Post",
     description: SEO?.metaDescription || "Blog post description",
     keywords: SEO?.metaKeywords || "blog, post",
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: SEO?.OGtitle || data?.title,
       description: SEO?.OGdescription || SEO?.metaDescription,
-      url: `https://buzznfinds.com/article/${data?.slug}`,
+      url: `/article/${data?.slug}`,
       siteName: "Buzz N Finds",
       images: [
         {
@@ -37,8 +38,20 @@ export async function generateMetadata({ params }) {
       locale: "en_US",
       type: "article",
     },
-    robots: "index, follow",
-    canonical: `https://buzznfinds.com/article/${data?.slug}`,
+    icons: {
+      icon: "https://buzznfinds.com/favicon.ico",
+      apple: "https://buzznfinds.com/favicon.ico",
+      other: {
+        url: "https://buzznfinds.com/images/logo.png",
+      },
+    },
+    alternates: {
+      canonical: `/article/${data?.slug}`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
   };
 }
 
@@ -96,7 +109,7 @@ export default async function Page({ params }) {
         </div>
         <RelatedBlogs
           category={data?.category?.slug}
-          limit={3}
+          limit={6}
           blogslug={data?.slug}
         />
       </>

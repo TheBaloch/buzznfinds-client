@@ -33,9 +33,9 @@ export const metadata = {
 export default function Home() {
   return (
     <main>
-      <LatestBlogs limit={9} />
+      <LatestBlogs limit={15} />
       <AllCategoryBlock />
-      <CategoryBlock category={"technology"} limit={6} />
+      <CategoryBlock category={"technology"} limit={9} />
     </main>
   );
 }
