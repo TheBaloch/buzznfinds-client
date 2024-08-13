@@ -26,6 +26,16 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "https://buzznfinds.com/favicon.ico",
+    apple: "https://buzznfinds.com/favicon.ico",
+    other: {
+      url: "https://buzznfinds.com/images/logo.png",
+    },
+  },
+  alternates: {
+    canonical: `https://buzznfinds.com`,
+  },
   robots: "index, follow",
   canonical: "https://buzznfinds.com",
 };
