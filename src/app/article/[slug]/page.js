@@ -42,7 +42,9 @@ export async function generateMetadata({ params }) {
       icon: "https://buzznfinds.com/favicon.ico",
       apple: "https://buzznfinds.com/favicon.ico",
       other: {
-        url: "https://buzznfinds.com/images/logo.png",
+        url: data?.mainImage,
+        width: 800,
+        height: 450,
       },
     },
     alternates: {
