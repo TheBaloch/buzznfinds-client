@@ -19,18 +19,18 @@ export async function generateMetadata({ params }) {
   const SEO = data?.blog?.content?.SEO;
   return {
     metadataBase: new URL("https://buzznfinds.com"),
-    title: data?.title || "Blog Post",
+    title: data?.blog?.title || "Blog Post",
     description: SEO?.metaDescription || "Blog post description",
     keywords: SEO?.metaKeywords || "blog, post",
-    authors: [{ name: data?.author?.name || "Author" }],
+    authors: [{ name: data?.blog?.author?.name || "Author" }],
     openGraph: {
-      title: SEO?.OGtitle || data?.title,
+      title: SEO?.OGtitle || data?.blog?.title,
       description: SEO?.OGdescription || SEO?.metaDescription,
-      url: `/article/${data?.slug}`,
+      url: `/article/${data?.blog?.slug}`,
       siteName: "Buzz N Finds",
       images: [
         {
-          url: data?.mainImage,
+          url: data?.blog?.mainImage,
           width: 800,
           height: 450,
         },
@@ -43,7 +43,7 @@ export async function generateMetadata({ params }) {
       apple: "https://buzznfinds.com/favicon.ico",
     },
     alternates: {
-      canonical: `/article/${data?.slug}`,
+      canonical: `/article/${data?.blog?.slug}`,
     },
     robots: {
       index: true,

@@ -14,7 +14,7 @@ export const metadata = {
     description:
       "Welcome to Buzz N Finds, your go-to source for the latest trends, helpful tips, and in-depth reviews on a wide range of topics. Stay informed and entertained with our expert insights.",
     url: "https://buzznfinds.com",
-    siteName: "buzznfinds",
+    siteName: "buzzNfinds",
     images: [
       {
         url: "https://buzznfinds.com/favicon.ico",
@@ -29,9 +29,6 @@ export const metadata = {
   icons: {
     icon: "https://buzznfinds.com/favicon.ico",
     apple: "https://buzznfinds.com/favicon.ico",
-    other: {
-      url: "https://buzznfinds.com/images/favicon.ico",
-    },
   },
   alternates: {
     canonical: `https://buzznfinds.com`,
