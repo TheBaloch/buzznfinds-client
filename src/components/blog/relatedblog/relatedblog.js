@@ -96,7 +96,7 @@ function customRelatedHeading(o) {
       <div className="bg-light-blue-100 p-6 text-center font-comic-sans">
         <p className="text-lg text-gray-800">
           <span className="text-orange-500 font-bold">
-            You've got to check these out...
+            You&apos;ve got to check these out...
           </span>{" "}
           Seriously, these are like the{" "}
           <span className="text-orange-500 font-bold">article</span> and its
