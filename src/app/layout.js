@@ -9,7 +9,7 @@ export const metadata = {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
     other: {
-      url: "/images/logo.png",
+      url: "/favicon.ico",
     },
   },
 };
@@ -17,6 +17,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4175702648008089"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
       <GoogleTagManager gtmId="GTM-KNB7NWC4" />
       <body>
         <noscript>
