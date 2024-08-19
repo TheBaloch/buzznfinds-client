@@ -14,13 +14,13 @@ export const metadata = {
     description:
       "Welcome to Buzz N Finds, your go-to source for the latest trends, helpful tips, and in-depth reviews on a wide range of topics. Stay informed and entertained with our expert insights.",
     url: "https://buzznfinds.com",
-    siteName: "Buzz N Finds",
+    siteName: "buzznfinds",
     images: [
       {
-        url: "https://buzznfinds.com/images/logo.png",
-        width: 230,
-        height: 63,
-        alt: "Buzz N Finds logo",
+        url: "https://buzznfinds.com/favicon.ico",
+        width: 50,
+        height: 50,
+        alt: "Buzznfinds icon",
       },
     ],
     locale: "en_US",
@@ -30,7 +30,7 @@ export const metadata = {
     icon: "https://buzznfinds.com/favicon.ico",
     apple: "https://buzznfinds.com/favicon.ico",
     other: {
-      url: "https://buzznfinds.com/images/logo.png",
+      url: "https://buzznfinds.com/images/favicon.ico",
     },
   },
   alternates: {
