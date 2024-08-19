@@ -41,11 +41,6 @@ export async function generateMetadata({ params }) {
     icons: {
       icon: "https://buzznfinds.com/favicon.ico",
       apple: "https://buzznfinds.com/favicon.ico",
-      other: {
-        url: data?.mainImage,
-        width: 800,
-        height: 450,
-      },
     },
     alternates: {
       canonical: `/article/${data?.slug}`,
