@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-async function getCategoryBlogs(category, limit) {
+async function getCategoryBlogs(category, limit, locale) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}&lang=${locale}`,
     {
       next: { revalidate: 86000 },
     }

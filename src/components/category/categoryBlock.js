@@ -1,9 +1,10 @@
+import initTranslations from "@/app/i18n";
 import Image from "next/image";
 import Link from "next/link";
 
-async function getCategoryBlogs(category, limit) {
+async function getCategoryBlogs(category, limit, locale) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}`,
+    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}&lang=${locale}`,
     {
       // cache: "force-cache",
       next: { revalidate: 86000 },
@@ -15,8 +16,9 @@ async function getCategoryBlogs(category, limit) {
   return res.json();
 }
 
-export default async function CategoryBlock({ category, limit }) {
-  const data = await getCategoryBlogs(category, limit);
+export default async function CategoryBlock({ category, limit, locale }) {
+  const data = await getCategoryBlogs(category, limit, locale);
+  const { t } = await initTranslations(locale, ["common"]);
   //console.log(data);
   return (
     <>
@@ -28,7 +30,7 @@ export default async function CategoryBlock({ category, limit }) {
             className="text-blue-600 hover:underline"
             rel="ugc"
           >
-            More in {data?.category} →
+            {t("more_in")} {data?.category} →
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

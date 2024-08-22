@@ -1,6 +1,8 @@
+import initTranslations from "@/app/i18n";
 import Link from "next/link";
 
-export default function Footer() {
+export default async function Footer({ locale }) {
+  const { t } = await initTranslations(locale, ["common"]);
   return (
     <footer className="bg-gray-900 text-white py-8">
       <div className="container mx-auto px-4 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -30,7 +32,7 @@ export default function Footer() {
           </ul>
         </div> */}
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Categories</h3>
+          <h3 className="text-lg font-bold">{t("categories")}</h3>
           <ul className="space-y-2">
             <li>
               <Link
@@ -71,26 +73,18 @@ export default function Footer() {
           </ul>
         </div>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">Resources</h3>
-          <p>Get in touch with us for more information.</p>
+          <h3 className="text-lg font-bold">{t("resources")}</h3>
+          <p>{t("resources_line")}</p>
           <div className="flex space-x-4"></div>
         </div>
         <div className="space-y-4">
-          <h3 className="text-lg font-bold">About</h3>
-          <p>
-            Welcome to BuzzNFinds, your ultimate destination for discovering the
-            latest trends, top-selling products, and insider tips. We’re here to
-            keep you in the loop with fresh insights and exciting finds that
-            make your life easier and more enjoyable. Whether you’re hunting for
-            the hottest gadgets, fashion essentials, or must-have home items,
-            BuzzNFinds has you covered. Join us on this journey of exploration
-            and let’s find what’s buzzing together!
-          </p>
+          <h3 className="text-lg font-bold">{t("about")}</h3>
+          <p>{t("about_line")}</p>
         </div>
       </div>
 
       <div className="container mx-auto px-4 md:px-0 mt-8 text-center text-gray-400">
-        &copy; 2024 BuzzNFinds. All rights reserved.
+        &copy; 2024 BuzzNFinds. {t("all_rights_reserved")}
       </div>
     </footer>
   );

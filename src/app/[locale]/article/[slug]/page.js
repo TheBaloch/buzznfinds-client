@@ -3,10 +3,13 @@ import styles from "./style.module.css";
 import Link from "next/link";
 import RelatedBlogs from "@/components/blog/relatedblog/relatedblog";
 
-async function fetchBlog(slug) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API}/blog/${slug}`, {
-    cache: "force-cache",
-  });
+async function fetchBlog(slug, lang) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API}/blog/${slug}?lang=${lang}`,
+    {
+      cache: "force-cache",
+    }
+  );
   if (!res.ok) {
     //throw new Error("Failed to fetch data");
     return null;
@@ -15,8 +18,8 @@ async function fetchBlog(slug) {
 }
 
 export async function generateMetadata({ params }) {
-  const data = await fetchBlog(params?.slug);
-  const SEO = data?.blog?.content?.SEO;
+  const data = await fetchBlog(params?.slug, params?.locale);
+  const SEO = data?.blog?.SEO;
   return {
     metadataBase: new URL("https://buzznfinds.com"),
     title: data?.blog?.title || "Blog Post",
@@ -26,7 +29,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: SEO?.OGtitle || data?.blog?.title,
       description: SEO?.OGdescription || SEO?.metaDescription,
-      url: `/article/${data?.blog?.slug}`,
+      url: `/${params?.locale}/article/${data?.blog?.slug}`,
       siteName: "Buzz N Finds",
       images: [
         {
@@ -43,7 +46,7 @@ export async function generateMetadata({ params }) {
       apple: "https://buzznfinds.com/favicon.ico",
     },
     alternates: {
-      canonical: `/article/${data?.blog?.slug}`,
+      canonical: `/${params?.locale}/article/${data?.blog?.slug}`,
     },
     robots: {
       index: true,
@@ -53,7 +56,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const data = await fetchBlog(params?.slug);
+  const data = await fetchBlog(params?.slug, params?.locale);
   const blog = data?.blog;
   const related = data?.related;
   //console.log(data);
@@ -90,22 +93,18 @@ export default async function Page({ params }) {
             />
           </div>
           <article className={styles.article}>
-            {blog?.content?.introduction && (
+            {blog?.introduction && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: blog?.content?.introduction,
+                  __html: blog?.introduction,
                 }}
               />
             )}
-            {blog?.content?.content && (
-              <div
-                dangerouslySetInnerHTML={{ __html: blog?.content?.content }}
-              />
+            {blog?.content && (
+              <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
             )}
-            {blog?.content?.conclusion && (
-              <div
-                dangerouslySetInnerHTML={{ __html: blog?.content?.conclusion }}
-              />
+            {blog?.conclusion && (
+              <div dangerouslySetInnerHTML={{ __html: blog?.conclusion }} />
             )}
             <div className={styles.authorSection}>
               <p id="author" className={styles.authorName}>
@@ -118,7 +117,11 @@ export default async function Page({ params }) {
           </article>
         </div>
         <div>
-          <RelatedBlogs related={related} id={blog?.id} />
+          <RelatedBlogs
+            related={related}
+            id={blog?.id}
+            locale={params?.locale}
+          />
         </div>
       </>
     );

@@ -37,12 +37,12 @@ export const metadata = {
   canonical: "https://buzznfinds.com",
 };
 
-export default function Home() {
+export default function Home({ params: { locale } }) {
   return (
     <main>
-      <LatestBlogs limit={15} />
-      <AllCategoryBlock />
-      <CategoryBlock category={"technology"} limit={9} />
+      <LatestBlogs limit={15} locale={locale} />
+      <AllCategoryBlock locale={locale} />
+      <CategoryBlock category={"technology"} limit={9} locale={locale} />
     </main>
   );
 }
