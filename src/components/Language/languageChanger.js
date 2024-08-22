@@ -44,11 +44,16 @@ export default function LanguageChanger() {
     <select
       id="language-select"
       name="language"
+      className="block w-full bg-white border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-gray-400 focus:border-gray-400 p-2 m-1"
       defaultValue={currentLocale}
       onChange={handleChange}
     >
       {languages.map((lang) => (
-        <option key={lang.id} value={lang.value} id={lang.id}>
+        <option
+          className="bg-white text-gray-800 hover:bg-gray-100"
+          key={lang.id}
+          value={lang.value}
+        >
           {lang.name}
         </option>
       ))}
