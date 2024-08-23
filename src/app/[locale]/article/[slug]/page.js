@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
           height: 450,
         },
       ],
-      locale: "en_US",
+      locale: params?.locale,
       type: "article",
     },
     icons: {
