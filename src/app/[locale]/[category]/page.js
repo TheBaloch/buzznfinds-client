@@ -3,7 +3,7 @@ import Link from "next/link";
 
 async function getCategoryBlogs(category, limit, locale) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API}/category/${category}?limit=${limit}&lang=${locale}`,
+    `${process.env.NEXT_PUBLIC_API}/category/${category}?lang=${locale}&limit=${limit}`,
     {
       next: { revalidate: 86000 },
     }
@@ -42,13 +42,12 @@ export function generateMetadata({ params }) {
       siteName: "Buzz N Finds",
       images: [
         {
-          url: "https://buzznfinds.com/images/logo.png",
-          width: 230,
-          height: 63,
+          url: "https://buzznfinds.com/favicon.ico",
+          width: 50,
+          height: 50,
           alt: "Buzz N Finds logo",
         },
       ],
-      locale: "en_US",
       type: "article",
     },
     robots: "index, follow",
@@ -57,15 +56,15 @@ export function generateMetadata({ params }) {
 }
 
 export default async function Page({ params }) {
-  const category = params.category;
-  const data = await getCategoryBlogs(category, 20);
+  const category = params?.category;
+  const data = await getCategoryBlogs(category, 20, params?.locale);
 
   if (data)
     return (
       <div className="flex min-h-screen flex-col bg-background">
         <div className="flex justify-center px-4 py-2 mt-10 mb-10 md:px-6">
           <span className="pb-2 text-4xl text-gray-600 font-bold shadow-sm border-b border-gray-200">
-            #{data?.category}
+            #{data?.name}
           </span>
         </div>
         <main className="grid gap-8 py-8 px-4 md:px-6 min-h-screen">
