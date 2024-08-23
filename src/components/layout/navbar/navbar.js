@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <div className="flex flex-col items-center p-4">
-      <div className="flex items-center justify-between w-full max-w-6xl p-4 bg-white border-b border-gray-300">
+      <div className="flex items-center justify-between w-full max-w-6xl p-4 bg-white rounded-lg shadow-md">
         <div className="flex items-center space-x-5">
           <Link href="/">
             <span className="text-2xl font-bold">Buzz N Finds</span>
