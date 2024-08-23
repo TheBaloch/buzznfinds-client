@@ -16,6 +16,7 @@ export default function LanguageChanger() {
     { value: "fr", name: "Français", id: "fr" },
     { value: "de", name: "Deutsch", id: "de" },
     { value: "ar", name: "العربية", id: "ar" },
+    { value: "ja", name: "日本語", id: "ja" },
   ];
 
   const handleChange = (selectedOption) => {
