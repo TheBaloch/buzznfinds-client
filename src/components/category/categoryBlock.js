@@ -25,7 +25,7 @@ export default async function CategoryBlock({ category, limit, locale }) {
     <>
       <section className="px-4 py-8 mb-20">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl text-teal-500 font-bold">{t(data?.slug)}</h2>
+          <h2 className="text-3xl text-teal-700 font-bold">{t(data?.slug)}</h2>
           <Link
             href={`/${data?.slug}`}
             className="text-blue-600 hover:underline"

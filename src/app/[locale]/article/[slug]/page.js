@@ -76,19 +76,24 @@ export default async function Page({ params }) {
           <div className="mx-auto max-w-screen-md">
             <div className="flex justify-center">
               <div className="flex gap-3">
-                <Link href={`/${data?.category?.slug}`}>
+                <Link href={`/${blog?.category?.slug}`}>
                   {/* <span className="inline-block text-xs font-2xl tracking-wider uppercase mt-5 text-blue-600"> */}
-                  <span className={styles.category}>
-                    {blog?.category?.category}
+                  <span className="text-md font-mono hover:underline">
+                    {blog?.category?.name}
                   </span>
                 </Link>
+                /
+                <span className="text-md font-mono">
+                  {" "}
+                  {blog?.subcategory?.name}
+                </span>
               </div>
             </div>
             {/* <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug"> */}
             <h1 className={styles.title}>{blog?.title}</h1>
             {/* <h2 className="text-brand-primary mb-3 mt-2 text-center text-lg lg:text-xl lg:leading-snug"> */}
-            <h2 className={styles.subtitle}>
-              <span className="font-mono">{blog?.subtitle}</span>
+            <h2 className="font-mono text-lg text-teal-700">
+              {blog?.subtitle}
             </h2>
           </div>
           <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8 mt-8">

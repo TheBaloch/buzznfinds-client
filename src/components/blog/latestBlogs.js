@@ -28,7 +28,7 @@ export default async function LatestBlogs({ limit, locale }) {
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="grid gap-8 px-4 md:px-6">
           <div className="space-y-2 text-center">
-            <h2 className="text-teal-500 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-10">
+            <h2 className="text-teal-700 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-10">
               {t("latest_from_the_blog")}
             </h2>
             <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed mb-10">
@@ -41,7 +41,7 @@ export default async function LatestBlogs({ limit, locale }) {
             {data?.map((blog, index) => (
               <Link
                 href={`/article/${blog?.slug}`}
-                className="group shadow-sm p-2"
+                className="group shadow-md p-2"
                 prefetch={false}
                 key={index}
               >

@@ -68,7 +68,7 @@ export default async function RelatedBlogs({ related, id, locale }) {
                   />
                 </div>
                 <h3 className="text-xl font-semibold font-mono group-hover:underline">
-                  <span className={index % 2 === 0 && "text-teal-600"}>
+                  <span className={index % 2 === 0 && "text-teal-800"}>
                     {blog?.title}
                   </span>
                 </h3>

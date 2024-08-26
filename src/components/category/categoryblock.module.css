@@ -42,6 +42,6 @@
   /* Color for specific h3 tags */
   .customGrid > :nth-child(4n+1) h3,
   .customGrid > :nth-child(4n+2) h3 {
-    color: #00bc98; /* Apply color to the 1st and 2nd items in every 4 items */
+    color: #007761; /* Apply color to the 1st and 2nd items in every 4 items */
   }
   

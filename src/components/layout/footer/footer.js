@@ -9,16 +9,13 @@ export default async function Footer({ locale }) {
         <div className="flex flex-col md:flex-row md:justify-between md:space-x-8">
           {/* Logo Section */}
           <div className="mb-6 md:mb-0 flex flex-col items-start">
-            <Link href="/" className="flex items-center">
-              <span className="font-bold font-serif text-teal-400 text-3xl">
-                BUZZ
-              </span>
-              <span className="font-mono text-teal-500 text-3xl font-bold">
-                N
-              </span>
-              <span className="font-bold font-serif text-teal-400 text-3xl">
-                FINDS
-              </span>
+            <Link
+              href="/"
+              className="flex items-center text-teal-500 hover:text-teal-300"
+            >
+              <span className="font-bold font-serif text-3xl">BUZZ</span>
+              <span className="font-mono text-3xl font-bold">N</span>
+              <span className="font-bold font-serif text-3xl">FINDS</span>
             </Link>
             <p className="font-mono mt-4 text-lg">{t("about_line")}</p>
 
@@ -65,7 +62,7 @@ export default async function Footer({ locale }) {
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-white" href="/lifestyle">
+                  <Link className="hover:text-white" href="/contact">
                     {t("contact")}
                   </Link>
                 </li>

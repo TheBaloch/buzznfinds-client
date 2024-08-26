@@ -1,17 +1,22 @@
 import initTranslations from "@/app/i18n";
 import LanguageChanger from "@/components/Language/languageChanger";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Navbar({ locale }) {
   const { t } = await initTranslations(locale, ["common"]);
   return (
-    <div className="flex items-center justify-between bg-white rounded-lg w-full shadow-md p-2">
-      <div className="flex items-center ">
+    <div className="flex items-center justify-between bg-white rounded-lg w-full shadow-md md:p-2 lg:p-4">
+      <div className="flex items-center">
         <Link href="/">
-          <span class="font-bold font-serif text-teal-500 text-4xl">BUZZ</span>
-          <span class="font-mono text-teal-600 text-4xl font-bold">N</span>
-          <span class="font-bold font-serif text-teal-500 text-4xl">FINDS</span>
+          <span class="font-bold font-serif text-teal-700 text-lg md:text-2xl lg:text-3xl">
+            BUZZ
+          </span>
+          <span class="font-mono text-teal-600 text-lg font-bold md:text-2xl lg:text-3xl">
+            N
+          </span>
+          <span class="font-bold font-serif text-teal-700 text-lg md:text-2xl lg:text-3xl">
+            FINDS
+          </span>
         </Link>
       </div>
       <div className="flex items-center p-2">
