@@ -105,7 +105,6 @@ export default async function Page({ params }) {
               height={450}
               style={{ objectFit: "cover", width: "100%", height: "auto" }}
               priority
-              unoptimized
               loading="eager"
             />
           </div>
