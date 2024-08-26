@@ -1,6 +1,7 @@
 import initTranslations from "@/app/i18n";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./categoryblock.module.css";
 
 async function getCategoryBlogs(category, limit, locale) {
   const res = await fetch(
@@ -24,18 +25,22 @@ export default async function CategoryBlock({ category, limit, locale }) {
     <>
       <section className="px-4 py-8 mb-20">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-3xl font-bold">{data?.category}</h2>
+          <h2 className="text-3xl text-teal-500 font-bold">{t(data?.slug)}</h2>
           <Link
             href={`/${data?.slug}`}
             className="text-blue-600 hover:underline"
             rel="ugc"
           >
-            {t("more_in")} {data?.category} →
+            {t("more_in")} {t(data?.slug)} →
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {data?.blogs?.map((blog, index) => (
-            <Link key={index} href={`/article/${blog?.slug}`} className="group">
+        <div className={styles.customGrid}>
+          {data?.blogs?.data?.map((blog, index) => (
+            <Link
+              key={index}
+              href={`/article/${blog?.slug}`}
+              className="group shadow-md p-2"
+            >
               <div className="space-y-4 mt-10">
                 <div className="overflow-hidden rounded-lg">
                   <Image
@@ -45,6 +50,7 @@ export default async function CategoryBlock({ category, limit, locale }) {
                     width="400"
                     height="300"
                     style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
+                    priority
                   />
                 </div>
                 <h3 className="text-xl font-semibold group-hover:underline">
@@ -55,7 +61,7 @@ export default async function CategoryBlock({ category, limit, locale }) {
                   <span>{blog?.author?.name}</span> <span>•</span>{" "}
                   <span>{formatDate(blog?.createdAt)}</span>
                 </div>
-                <p className="text-gray-700">{blog?.subtitle}</p>
+                <p className="text-gray-700">{blog?.overview}</p>
               </div>
             </Link>
           ))}

@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params: { locale } }) {
             ></iframe>
           </noscript>
 
-          <Navbar />
+          <Navbar locale={locale} />
           {children}
           <Footer locale={locale} />
         </body>

@@ -47,6 +47,14 @@ export async function generateMetadata({ params }) {
     },
     alternates: {
       canonical: `/${params?.locale}/article/${data?.blog?.slug}`,
+      languages: {
+        ar: `/ar/article/${data?.blog?.slug}`,
+        de: `/de/article/${data?.blog?.slug}`,
+        en: `/en/article/${data?.blog?.slug}`,
+        es: `/es/article/${data?.blog?.slug}`,
+        fr: `/fr/article/${data?.blog?.slug}`,
+        ja: `/ja/article/${data?.blog?.slug}`,
+      },
     },
     robots: {
       index: true,
@@ -79,7 +87,9 @@ export default async function Page({ params }) {
             {/* <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug"> */}
             <h1 className={styles.title}>{blog?.title}</h1>
             {/* <h2 className="text-brand-primary mb-3 mt-2 text-center text-lg lg:text-xl lg:leading-snug"> */}
-            <h2 className={styles.subtitle}>{blog?.subtitle}</h2>
+            <h2 className={styles.subtitle}>
+              <span className="font-mono">{blog?.subtitle}</span>
+            </h2>
           </div>
           <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8 mt-8">
             <Image
@@ -90,6 +100,7 @@ export default async function Page({ params }) {
               height={450}
               style={{ objectFit: "cover", width: "100%", height: "auto" }}
               priority
+              unoptimized
             />
           </div>
           <article className={styles.article}>

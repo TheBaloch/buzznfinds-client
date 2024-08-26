@@ -67,8 +67,10 @@ export default async function RelatedBlogs({ related, id, locale }) {
                     style={{ aspectRatio: "400 / 300", objectFit: "cover" }}
                   />
                 </div>
-                <h3 className="text-xl font-semibold group-hover:underline">
-                  {blog?.title}
+                <h3 className="text-xl font-semibold font-mono group-hover:underline">
+                  <span className={index % 2 === 0 && "text-teal-600"}>
+                    {blog?.title}
+                  </span>
                 </h3>
 
                 <div className="text-gray-600">

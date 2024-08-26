@@ -56,7 +56,7 @@ export async function generateMetadata({ params: { locale } }) {
     title: translation.title,
     description: translation.description,
     keywords: translation.keywords,
-    authors: [{ name: "Buzz N Finds Team" }],
+    authors: [{ name: "buzzNfinds Team" }],
     openGraph: {
       title: translation.title,
       description: translation.description,
@@ -79,6 +79,14 @@ export async function generateMetadata({ params: { locale } }) {
     },
     alternates: {
       canonical: `https://buzznfinds.com/${locale}`,
+      languages: {
+        en: "https://buzznfinds.com/en",
+        es: "https://buzznfinds.com/es",
+        fr: "https://buzznfinds.com/fr",
+        de: "https://buzznfinds.com/de",
+        ar: "https://buzznfinds.com/ar",
+        pt: "https://buzznfinds.com/js",
+      },
     },
     robots: "index, follow",
   };
@@ -87,9 +95,13 @@ export async function generateMetadata({ params: { locale } }) {
 export default function Home({ params: { locale } }) {
   return (
     <main>
-      <LatestBlogs limit={15} locale={locale} />
+      <LatestBlogs limit={10} locale={locale} />
+      <CategoryBlock category={"technology"} limit={6} locale={locale} />
       <AllCategoryBlock locale={locale} />
-      <CategoryBlock category={"technology"} limit={9} locale={locale} />
+      <CategoryBlock category={"lifestyle"} limit={5} locale={locale} />
+      <CategoryBlock category={"health"} limit={3} locale={locale} />
+      <CategoryBlock category={"marketing"} limit={4} locale={locale} />
+      <CategoryBlock category={"business"} limit={3} locale={locale} />
     </main>
   );
 }

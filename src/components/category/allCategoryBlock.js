@@ -19,7 +19,7 @@ export default async function AllCategoryBlock({ locale }) {
       <>
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="space-y-4 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <h2 className="text-teal-500 text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               {t("view_blogs_from_all_categories")}
             </h2>
             <p className="max-w-[700px] mx-auto text-gray-600 md:text-xl lg:text-2xl xl:text-2xl">

@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Buzz N Finds",
+  title: "buzzNfinds",
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",

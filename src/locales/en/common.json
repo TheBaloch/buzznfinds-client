@@ -3,7 +3,7 @@
   "resources": "Resources",
   "resources_line": "Get in touch with us for more information.",
   "about": "About",
-  "about_line": "Welcome to BuzzNFinds, your ultimate destination for discovering the latest trends, top-selling products, and insider tips. We’re here to keep you in the loop with fresh insights and exciting finds that make your life easier and more enjoyable. Whether you’re hunting for the hottest gadgets, fashion essentials, or must-have home items, BuzzNFinds has you covered. Join us on this journey of exploration and let’s find what’s buzzing together!",
+  "about_line": "Welcome to BuzzNFinds! Explore the latest in technology,electronics, and trending products with us. Discover top picks and stay updated on what’s new and exciting in tech!",
   "all_rights_reserved": "All rights reserved.",
   "more_in": "More in",
   "latest_from_the_blog": "Latest from the Blog",
@@ -33,5 +33,10 @@
     "starsReady": "The latest blog and its stars are ready for you!",
     "hooray": "Hooray!",
     "partyTime": "The new post and its friends are having a party!"
-  }
+  },
+  "technology": "Technology",
+  "lifestyle": "LifeStyle",
+  "health": "Health",
+  "marketing": "Marketing",
+  "business": "Business"
 }

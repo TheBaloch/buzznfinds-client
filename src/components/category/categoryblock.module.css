@@ -1,0 +1,47 @@
+.customGrid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr); /* Default to 1 column for small screens */
+  }
+  
+  /* For medium screens and up (min-width: 768px) */
+  @media (min-width: 768px) {
+    .customGrid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns layout */
+    }
+  
+    /* First item in every 2 items spans 2 columns */
+    .customGrid > :nth-child(2n+1) {
+      grid-column: span 2;
+    }
+  
+    /* Second item in every 2 items spans 1 column */
+    .customGrid > :nth-child(2n+2) {
+      grid-column: span 1;
+    }
+  }
+  
+  /* For large screens and up (min-width: 1024px) */
+  @media (min-width: 1024px) {
+    .customGrid {
+      grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
+    }
+  
+    /* First item in every 3 items spans 2 columns */
+    .customGrid > :nth-child(3n+1) {
+      grid-column: span 2;
+    }
+  
+    /* Second and third items in every 3 items span 1 column each */
+    .customGrid > :nth-child(3n+2),
+    .customGrid > :nth-child(3n+3) {
+      grid-column: span 1;
+    }
+  }
+  
+  /* Color for specific h3 tags */
+  .customGrid > :nth-child(4n+1) h3,
+  .customGrid > :nth-child(4n+2) h3 {
+    color: #00bc98; /* Apply color to the 1st and 2nd items in every 4 items */
+  }
+  

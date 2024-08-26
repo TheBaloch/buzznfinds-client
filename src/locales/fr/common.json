@@ -3,7 +3,7 @@
   "resources": "Ressources",
   "resources_line": "Contactez-nous pour plus d'informations.",
   "about": "À propos",
-  "about_line": "Bienvenue sur BuzzNFinds, votre destination ultime pour découvrir les dernières tendances, les produits les plus vendus et des conseils exclusifs. Nous sommes ici pour vous tenir informé avec des idées fraîches et des découvertes passionnantes qui rendront votre vie plus facile et agréable. Que vous soyez à la recherche des gadgets les plus récents, des essentiels de mode ou des articles indispensables pour la maison, BuzzNFinds a tout ce qu'il vous faut. Rejoignez-nous dans ce voyage d'exploration et découvrons ensemble ce qui fait le buzz!",
+  "about_line": "Bienvenue sur BuzzNFinds ! Explorez les dernières nouveautés en technologie, électronique et produits tendance avec nous. Découvrez nos meilleures sélections et restez informé des dernières innovations et excitations dans le domaine de la technologie !",
   "all_rights_reserved": "Tous droits réservés.",
   "more_in": "Plus dans",
   "latest_from_the_blog": "Dernières nouvelles du blog",
@@ -33,5 +33,10 @@
     "starsReady": "Le dernier blog et ses stars sont prêts pour vous !",
     "hooray": "Hourra !",
     "partyTime": "Le nouveau post et ses amis organisent une fête !"
-  }
+  },
+  "technology": "Technologie",
+  "lifestyle": "Mode de vie",
+  "health": "Santé",
+  "marketing": "Marketing",
+  "business": "Affaires"
 }

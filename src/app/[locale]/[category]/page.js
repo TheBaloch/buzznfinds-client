@@ -1,5 +1,7 @@
+import initTranslations from "@/app/i18n";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./page.module.css";
 
 async function getCategoryBlogs(category, limit, locale) {
   const res = await fetch(
@@ -15,30 +17,83 @@ async function getCategoryBlogs(category, limit, locale) {
 }
 
 export function generateMetadata({ params }) {
-  const title = `BuzzNFinds - ${params?.category
-    ?.toUpperCase()
-    .replace("-", " ")}`;
-  const description = `Explore the latest insights and trends in ${params?.category.replace(
-    "-",
-    " "
-  )} at Buzz N Finds. Stay informed with our in-depth articles and expert analysis.`;
-  const keywords = `${params?.category?.replace(
-    "-",
-    " "
-  )}, ${params?.category?.replace("-", " ")}, latest trends, expert analysis`;
-  const authors = [{ name: "Buzz N Finds Editorial Team" }];
-  const openGraphTitle = title;
-  const openGraphDescription = description;
+  const localizedTitles = {
+    de: `BuzzNFinds - ${params?.category
+      ?.replace("-", " ")
+      .toUpperCase()} Trends`,
+    ar: `BuzzNFinds - أحدث الاتجاهات في ${params?.category?.replace("-", " ")}`,
+    en: `BuzzNFinds - ${params?.category?.toUpperCase().replace("-", " ")}`,
+    es: `BuzzNFinds - Tendencias en ${params?.category
+      ?.replace("-", " ")
+      .toUpperCase()}`,
+    fr: `BuzzNFinds - Tendances ${params?.category
+      ?.replace("-", " ")
+      .toUpperCase()}`,
+    ja: `BuzzNFinds - 最新トレンド ${params?.category?.replace("-", " ")}`,
+  };
+
+  const localizedDescriptions = {
+    de: `Entdecken Sie die neuesten Einblicke und Trends in ${params?.category.replace(
+      "-",
+      " "
+    )} bei BuzzNFinds. Bleiben Sie informiert mit unseren ausführlichen Artikeln und Expertenanalysen.`,
+    ar: `استكشف أحدث الأفكار والاتجاهات في ${params?.category.replace(
+      "-",
+      " "
+    )} على BuzzNFinds. كن مطلعًا على مقالاتنا المتعمقة وتحليلات الخبراء.`,
+    en: `Explore the latest insights and trends in ${params?.category.replace(
+      "-",
+      " "
+    )} at BuzzNFinds. Stay informed with our in-depth articles and expert analysis.`,
+    es: `Descubre las últimas ideas y tendencias en ${params?.category.replace(
+      "-",
+      " "
+    )} en BuzzNFinds. Mantente informado con nuestros artículos detallados y análisis expertos.`,
+    fr: `Explorez les dernières idées et tendances en ${params?.category.replace(
+      "-",
+      " "
+    )} sur BuzzNFinds. Restez informé avec nos articles approfondis et analyses d'experts.`,
+    ja: `${params?.category.replace(
+      "-",
+      " "
+    )}に関する最新の洞察とトレンドをBuzzNFindsで探求しましょう。詳細な記事と専門家の分析で情報を入手してください。`,
+  };
+
+  const localizedKeywords = {
+    de: `${params?.category?.replace(
+      "-",
+      " "
+    )}, neueste Trends, Expertenanalyse`,
+    ar: `${params?.category?.replace("-", " ")}, أحدث الاتجاهات, تحليل الخبراء`,
+    en: `${params?.category?.replace(
+      "-",
+      " "
+    )}, latest trends, expert analysis`,
+    es: `${params?.category?.replace(
+      "-",
+      " "
+    )}, últimas tendencias, análisis de expertos`,
+    fr: `${params?.category?.replace(
+      "-",
+      " "
+    )}, dernières tendances, analyse d'experts`,
+    ja: `${params?.category?.replace("-", " ")}, 最新トレンド, 専門家の分析`,
+  };
+
+  const title = localizedTitles[params?.locale] || localizedTitles.en;
+  const description =
+    localizedDescriptions[params?.locale] || localizedDescriptions.en;
+  const keywords = localizedKeywords[params?.locale] || localizedKeywords.en;
 
   return {
     title,
     description,
     keywords,
-    authors,
+    authors: [{ name: "Buzz N Finds Editorial Team" }],
     openGraph: {
-      title: openGraphTitle,
-      description: openGraphDescription,
-      url: `https://buzznfinds.com/${params?.category}`,
+      title,
+      description,
+      url: `https://buzznfinds.com/${params?.locale}/${params?.category}`,
       siteName: "Buzz N Finds",
       images: [
         {
@@ -51,11 +106,11 @@ export function generateMetadata({ params }) {
       type: "article",
     },
     robots: "index, follow",
-    canonical: `https://buzznfinds.com/${params?.category}`,
   };
 }
 
 export default async function Page({ params }) {
+  const { t } = await initTranslations(params?.locale, ["common"]);
   const category = params?.category;
   const data = await getCategoryBlogs(category, 20, params?.locale);
 
@@ -64,13 +119,14 @@ export default async function Page({ params }) {
       <div className="flex min-h-screen flex-col bg-background">
         <div className="flex justify-center px-4 py-2 mt-10 mb-10 md:px-6">
           <span className="pb-2 text-4xl text-gray-600 font-bold shadow-sm border-b border-gray-200">
-            #{data?.name}
+            <span className="text-teal-500">#</span>
+            {t(data?.slug)}
           </span>
         </div>
         <main className="grid gap-8 py-8 px-4 md:px-6 min-h-screen">
-          {data?.blogs?.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2">
-              {data?.blogs?.map((blog, key) => (
+          {data?.blogs?.data?.length > 0 ? (
+            <div className={styles.customGrid}>
+              {data?.blogs?.data?.map((blog, key) => (
                 <Link href={`/article/${blog?.slug}`} key={key}>
                   <div className="group relative overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
                     <Image
@@ -80,6 +136,7 @@ export default async function Page({ params }) {
                       height={500}
                       className="h-80 w-full object-cover transition-all duration-300 group-hover:scale-105"
                       style={{ aspectRatio: "400/500", objectFit: "cover" }}
+                      priority
                     />
                     <div className="p-4">
                       <h3 className="text-xl font-bold tracking-tight group-hover:underline">
@@ -89,12 +146,13 @@ export default async function Page({ params }) {
                         By {blog?.author?.name} • {formatDate(blog?.createdAt)}
                       </p>
                       <p className="mt-4 line-clamp-3 text-muted-foreground">
-                        {blog?.subtitle}
+                        {blog?.overview}
                       </p>
                     </div>
                   </div>
                 </Link>
               ))}
+              <div className="h-64"></div>
             </div>
           ) : (
             <div className="flex flex-col items-center p-6">

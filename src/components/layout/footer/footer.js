@@ -4,87 +4,80 @@ import Link from "next/link";
 export default async function Footer({ locale }) {
   const { t } = await initTranslations(locale, ["common"]);
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-4 md:px-0 grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* <div className="space-y-4">
-          <h4 className="text-lg font-bold">Services</h4>
-          <ul className="space-y-2">
-            <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Web Design
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Web Development
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Digital Marketing
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="hover:text-gray-400" prefetch={false}>
-                Branding
-              </Link>
-            </li>
-          </ul>
-        </div> */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold">{t("categories")}</h3>
-          <ul className="space-y-2">
-            <li>
-              <Link
-                href="/technology"
-                className="hover:text-gray-400"
-                prefetch={false}
-              >
-                Technology
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/artificial-intelligence"
-                className="hover:text-gray-400"
-                prefetch={false}
-              >
-                Artificial Intelligence
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/entertainment-technology"
-                className="hover:text-gray-400"
-                prefetch={false}
-              >
-                Entertainment Technology
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blockchain-technology"
-                className="hover:text-gray-400"
-                prefetch={false}
-              >
-                Blockchain Technology
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold">{t("resources")}</h3>
-          <p>{t("resources_line")}</p>
-          <div className="flex space-x-4"></div>
-        </div>
-        <div className="space-y-4">
-          <h3 className="text-lg font-bold">{t("about")}</h3>
-          <p>{t("about_line")}</p>
-        </div>
-      </div>
+    <footer className="bg-gray-800 text-white py-8 pt-10">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:space-x-8">
+          {/* Logo Section */}
+          <div className="mb-6 md:mb-0 flex flex-col items-start">
+            <Link href="/" className="flex items-center">
+              <span className="font-bold font-serif text-teal-400 text-3xl">
+                BUZZ
+              </span>
+              <span className="font-mono text-teal-500 text-3xl font-bold">
+                N
+              </span>
+              <span className="font-bold font-serif text-teal-400 text-3xl">
+                FINDS
+              </span>
+            </Link>
+            <p className="font-mono mt-4 text-lg">{t("about_line")}</p>
 
-      <div className="container mx-auto px-4 md:px-0 mt-8 text-center text-gray-400">
-        &copy; 2024 BuzzNFinds. {t("all_rights_reserved")}
+            <div className="mb-6 md:mb-0 mt-10">
+              <h3 className="text-lg font-bold mb-4 text-teal-300">
+                {t("categories")}
+              </h3>
+              <ul className="space-y-2 font-mono text-gray-300">
+                <li>
+                  <Link className="hover:text-white" href="/technology">
+                    {t("technology")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-white" href="/lifestyle">
+                    {t("lifestyle")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-white" href="/health">
+                    {t("health")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-white" href="/marketing">
+                    {t("marketing")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-white" href="/business">
+                    {t("business")}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="mb-6 md:mb-0 mt-10">
+              <h3 className="text-lg font-bold mb-4 text-teal-300">
+                {t("resources")}
+              </h3>
+              <ul className="space-y-2 font-mono text-gray-300">
+                <li>
+                  <Link className="hover:text-white" href="/about">
+                    {t("about")}
+                  </Link>
+                </li>
+                <li>
+                  <Link className="hover:text-white" href="/lifestyle">
+                    {t("contact")}
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom */}
+        <div className="mt-6 border-t border-gray-700 pt-4 text-gray-400 text-sm text-center md:text-left">
+          &copy; 2024 Buzznfinds. {t("all_rights_reserved")}
+        </div>
       </div>
     </footer>
   );
