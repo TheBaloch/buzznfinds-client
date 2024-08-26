@@ -100,12 +100,13 @@ export default async function Page({ params }) {
             <Image
               src={blog?.mainImage}
               alt={blog?.title || "Blog image"}
-              sizes="(max-width: 768px) 100vw, 800px"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
               width={800}
               height={450}
               style={{ objectFit: "cover", width: "100%", height: "auto" }}
               priority
               unoptimized
+              loading="eager"
             />
           </div>
           <article className={styles.article}>
