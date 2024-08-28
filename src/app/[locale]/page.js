@@ -65,8 +65,8 @@ export async function generateMetadata({ params: { locale } }) {
       images: [
         {
           url: "https://buzznfinds.com/favicon.ico",
-          width: 50,
-          height: 50,
+          width: 200,
+          height: 200,
           alt: "Buzznfinds icon",
         },
       ],
@@ -78,14 +78,13 @@ export async function generateMetadata({ params: { locale } }) {
       apple: "https://buzznfinds.com/favicon.ico",
     },
     alternates: {
-      canonical: `https://buzznfinds.com/${locale}`,
       languages: {
         en: "https://buzznfinds.com/en",
         es: "https://buzznfinds.com/es",
         fr: "https://buzznfinds.com/fr",
         de: "https://buzznfinds.com/de",
         ar: "https://buzznfinds.com/ar",
-        pt: "https://buzznfinds.com/js",
+        ja: "https://buzznfinds.com/ja",
       },
     },
     robots: "index, follow",

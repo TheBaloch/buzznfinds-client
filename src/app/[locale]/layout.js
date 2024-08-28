@@ -6,7 +6,7 @@ import initTranslations from "../i18n";
 import TranslationsProvider from "@/contexts/TranslationsProvider";
 
 export const metadata = {
-  title: "Buzz N Finds",
+  title: "BuzzNfinds",
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",

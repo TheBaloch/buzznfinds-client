@@ -26,6 +26,7 @@ export async function generateMetadata({ params }) {
     description: SEO?.metaDescription || "Blog post description",
     keywords: SEO?.metaKeywords || "blog, post",
     authors: [{ name: data?.blog?.author?.name || "Author" }],
+    locale: params?.locale,
     openGraph: {
       title: SEO?.OGtitle || data?.blog?.title,
       description: SEO?.OGdescription || SEO?.metaDescription,
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }) {
       apple: "https://buzznfinds.com/favicon.ico",
     },
     alternates: {
-      canonical: `/${params?.locale}/article/${data?.blog?.slug}`,
+      //canonical: `/${params?.locale}/article/${data?.blog?.slug}`,
       languages: {
         ar: `/ar/article/${data?.blog?.slug}`,
         de: `/de/article/${data?.blog?.slug}`,

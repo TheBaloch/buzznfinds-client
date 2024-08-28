@@ -90,7 +90,9 @@ export function generateMetadata({ params }) {
     description,
     keywords,
     authors: [{ name: "Buzz N Finds Editorial Team" }],
+    locale: params?.locale,
     openGraph: {
+      locale: params?.locale,
       title,
       description,
       url: `https://buzznfinds.com/${params?.locale}/${params?.category}`,
@@ -103,7 +105,17 @@ export function generateMetadata({ params }) {
           alt: "Buzz N Finds logo",
         },
       ],
-      type: "article",
+      type: "website",
+      alternates: {
+        languages: {
+          en: `https://buzznfinds.com/en/${params?.category}`,
+          es: `https://buzznfinds.com/es/${params?.category}`,
+          fr: `https://buzznfinds.com/fr/${params?.category}`,
+          de: `https://buzznfinds.com/de/${params?.category}`,
+          ar: `https://buzznfinds.com/ar/${params?.category}`,
+          ja: `https://buzznfinds.com/ja/${params?.category}`,
+        },
+      },
     },
     robots: "index, follow",
   };

@@ -36,6 +36,7 @@ export function generateMetadata({ params }) {
     description,
     keywords,
     authors: [{ name: "Buzz N Finds Editorial Team" }],
+    locale: params?.locale,
     openGraph: {
       title,
       description,
@@ -50,6 +51,16 @@ export function generateMetadata({ params }) {
         },
       ],
       type: "website",
+      alternates: {
+        languages: {
+          en: `https://buzznfinds.com/en/about`,
+          es: `https://buzznfinds.com/es/about`,
+          fr: `https://buzznfinds.com/fr/about`,
+          de: `https://buzznfinds.com/de/about`,
+          ar: `https://buzznfinds.com/ar/about`,
+          ja: `https://buzznfinds.com/ja/about`,
+        },
+      },
     },
     robots: "index, follow",
   };
