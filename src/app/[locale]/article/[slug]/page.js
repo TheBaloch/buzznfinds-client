@@ -97,6 +97,17 @@ export default async function Page({ params }) {
               {blog?.subtitle}
             </h2>
           </div>
+          <div className="flex flex-wrap gap-2 p-4 mt-5">
+            {blog.tags?.map((tag, key) => (
+              <span
+                key={key}
+                className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 font-mono"
+              >
+                {tag.name}
+              </span>
+            ))}
+          </div>
+
           <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8 mt-8">
             <Image
               src={blog?.mainImage}
@@ -118,6 +129,12 @@ export default async function Page({ params }) {
             )}
             {blog?.content && (
               <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
+            )}
+            {blog?.content1 && (
+              <div dangerouslySetInnerHTML={{ __html: blog?.content1 }} />
+            )}
+            {blog?.content2 && (
+              <div dangerouslySetInnerHTML={{ __html: blog?.content2 }} />
             )}
             {blog?.conclusion && (
               <div dangerouslySetInnerHTML={{ __html: blog?.conclusion }} />
