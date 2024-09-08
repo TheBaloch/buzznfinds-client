@@ -30,7 +30,7 @@ export default async function RootLayout({ children, params: { locale } }) {
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4175702648008089"
             crossOrigin="anonymous"
-          ></script>
+          />
         </head>
         <GoogleTagManager gtmId="GTM-KNB7NWC4" />
         <body>
