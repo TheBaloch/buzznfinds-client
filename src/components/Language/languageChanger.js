@@ -52,10 +52,10 @@ export default function LanguageChanger() {
       >
         {languages.find((lang) => lang.value === currentLocale)?.name ||
           "Language"}
-        <ChevronDownIcon className="ml-2 h-5 w-5" aria-hidden="true" />
+        <ChevronDownIcon className=" h-5 w-5" aria-hidden="true" />
       </button>
       {languageDropdown && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+        <div className="absolute right-0 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
           <div className="py-1" role="menu">
             {languages.map((lang) => (
               <span

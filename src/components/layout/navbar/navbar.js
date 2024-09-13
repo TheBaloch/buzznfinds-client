@@ -5,7 +5,7 @@ import Link from "next/link";
 export default async function Navbar({ locale }) {
   const { t } = await initTranslations(locale, ["common"]);
   return (
-    <div className="flex items-center justify-between bg-white rounded-lg w-full shadow-md md:p-2 lg:p-4">
+    <div className="flex items-center justify-between bg-gray-200 rounded-lg w-full shadow-md md:p-2 lg:p-4 p-2">
       <div className="flex items-center">
         <Link href="/">
           <span class="font-bold font-serif text-teal-700 text-lg md:text-2xl lg:text-3xl">
@@ -34,7 +34,9 @@ export default async function Navbar({ locale }) {
             {t("about")}
           </Link>
         </nav>
-        <LanguageChanger />
+        <div>
+          <LanguageChanger />
+        </div>
       </div>
     </div>
   );
