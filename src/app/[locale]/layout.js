@@ -31,6 +31,10 @@ export default async function RootLayout({ children, params: { locale } }) {
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4175702648008089"
             crossOrigin="anonymous"
           />
+          <meta
+            name="google-adsense-account"
+            content="ca-pub-4175702648008089"
+          ></meta>
         </head>
         <GoogleTagManager gtmId="GTM-KNB7NWC4" />
         <body>

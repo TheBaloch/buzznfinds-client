@@ -18,6 +18,10 @@ export default function Layout({ children }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4175702648008089"
           crossOrigin="anonymous"
         />
+        <meta
+          name="google-adsense-account"
+          content="ca-pub-4175702648008089"
+        ></meta>
       </head>
       <body>{children}</body>
     </html>
