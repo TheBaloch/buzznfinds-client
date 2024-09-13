@@ -48,11 +48,11 @@ export default function LanguageChanger() {
     <div className="relative z-10">
       <button
         onClick={() => setLanguageDropdown(!languageDropdown)}
-        className="bg-white text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+        className="bg-gray-200 text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center"
       >
         {languages.find((lang) => lang.value === currentLocale)?.name ||
           "Language"}
-        <ChevronDownIcon className=" h-5 w-5" aria-hidden="true" />
+        <ChevronDownIcon className="ml-2 h-5 w-5" aria-hidden="true" />
       </button>
       {languageDropdown && (
         <div className="absolute right-0 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
