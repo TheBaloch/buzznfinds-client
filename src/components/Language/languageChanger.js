@@ -48,7 +48,7 @@ export default function LanguageChanger() {
     <div className="relative z-10">
       <button
         onClick={() => setLanguageDropdown(!languageDropdown)}
-        className="bg-gray-200 text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center"
+        className="text-gray-900 hover:text-gray-700 px-3 py-2 rounded-md text-sm font-medium flex items-center"
       >
         {languages.find((lang) => lang.value === currentLocale)?.name ||
           "Language"}

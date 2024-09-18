@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./style.module.css";
 import Link from "next/link";
 import RelatedBlogs from "@/components/blog/relatedblog/relatedblog";
+import BlogDetail from "@/components/blog/blogDetails/blogDetails";
 
 async function fetchBlog(slug, lang) {
   const res = await fetch(
@@ -68,94 +69,11 @@ export default async function Page({ params }) {
   const data = await fetchBlog(params?.slug, params?.locale);
   const blog = data?.blog;
   const related = data?.related;
-  //console.log(data);
 
   if (blog) {
     return (
       <>
-        <div className="container  mx-auto max-w-screen-lg py-2 px-2 lg:py-7 md:px-7 lg:px-7">
-          <div className="mx-auto max-w-screen-md">
-            <div className="flex justify-center">
-              <div className="flex gap-3">
-                <Link href={`/${blog?.category?.slug}`}>
-                  {/* <span className="inline-block text-xs font-2xl tracking-wider uppercase mt-5 text-blue-600"> */}
-                  <span className="text-md font-mono hover:underline">
-                    {blog?.category?.name}
-                  </span>
-                </Link>
-                /
-                <span className="text-md font-mono">
-                  {" "}
-                  {blog?.subcategory?.name}
-                </span>
-              </div>
-            </div>
-            {/* <h1 className="text-brand-primary mb-3 mt-2 text-center text-3xl font-semibold tracking-tight lg:text-4xl lg:leading-snug"> */}
-            <h1 className={styles.title}>{blog?.title}</h1>
-            {/* <h2 className="text-brand-primary mb-3 mt-2 text-center text-lg lg:text-xl lg:leading-snug"> */}
-            <h2 className="font-mono text-lg text-teal-700">
-              {blog?.subtitle}
-            </h2>
-          </div>
-          <div className="flex flex-wrap gap-2 p-4 mt-5">
-            {blog.tags?.map((tag, key) => (
-              <span
-                key={key}
-                className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-700 font-mono"
-              >
-                {tag.name}
-              </span>
-            ))}
-          </div>
-
-          <div className="relative z-0 mx-auto aspect-video max-w-screen-lg overflow-hidden lg:rounded-lg mb-8 mt-8">
-            <Image
-              src={blog?.mainImage}
-              alt={blog?.title || "Blog image"}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
-              width={800}
-              height={450}
-              style={{ objectFit: "cover", width: "100%", height: "auto" }}
-              loading="eager"
-            />
-          </div>
-          <article className={styles.article}>
-            {blog?.introduction && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: blog?.introduction,
-                }}
-              />
-            )}
-            {blog?.content && (
-              <div dangerouslySetInnerHTML={{ __html: blog?.content }} />
-            )}
-            {blog?.content1 && (
-              <div dangerouslySetInnerHTML={{ __html: blog?.content1 }} />
-            )}
-            {blog?.content2 && (
-              <div dangerouslySetInnerHTML={{ __html: blog?.content2 }} />
-            )}
-            {blog?.conclusion && (
-              <div dangerouslySetInnerHTML={{ __html: blog?.conclusion }} />
-            )}
-            <div className={styles.authorSection}>
-              <p id="author" className={styles.authorName}>
-                {blog?.author?.name}
-              </p>
-              <p id="author-bio" className={styles.authorAbout}>
-                {blog?.author?.about}
-              </p>
-            </div>
-          </article>
-        </div>
-        <div>
-          <RelatedBlogs
-            related={related}
-            id={blog?.id}
-            locale={params?.locale}
-          />
-        </div>
+        <BlogDetail blog={blog} related={related} />
       </>
     );
   } else {
