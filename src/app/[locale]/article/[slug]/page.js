@@ -70,9 +70,63 @@ export default async function Page({ params }) {
   const blog = data?.blog;
   const related = data?.related;
 
+  function constructBlogUrl(slug, locale) {
+    return `https://buzznfinds.com/${
+      locale !== "en" ? locale + "/" : ""
+    }article/${slug}`;
+  }
+
   if (blog) {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": constructBlogUrl(blog.slug, params?.locale),
+      },
+      headline: blog.title,
+      image: blog.mainImage,
+      author: {
+        "@type": "Person",
+        name: blog.author.name,
+        description: blog.author.about,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Buzz N Finds",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://buzznfinds.com/favicon.ico",
+        },
+      },
+      datePublished: blog.createdAt,
+      dateModified: blog.updatedAt,
+      description: blog.overview,
+      articleBody:
+        blog.introduction + blog.content + blog.content1 + blog.content2,
+      articleSection: [blog.category.name, blog.subcategory.name],
+      keywords: blog.tags.map((tag) => tag.name),
+      inLanguage: params?.locale,
+      about: blog.tags.map((tag) => ({
+        "@type": "Thing",
+        name: tag.name,
+      })),
+      potentialAction: {
+        "@type": "SubscribeAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://buzznfinds.com/newsletter-subscription",
+        },
+      },
+    };
     return (
       <>
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+        </head>
         <BlogDetail blog={blog} related={related} />
       </>
     );
