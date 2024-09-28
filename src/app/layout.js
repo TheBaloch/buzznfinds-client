@@ -16,12 +16,9 @@ export default function Layout({ children }) {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3472087135692561"
-          crossOrigin="anonymous"
+          crossorigin="anonymous"
         ></script>
-        <meta
-          name="google-adsense-account"
-          content="ca-pub-3472087135692561"
-        ></meta>
+        <meta name="google-adsense-account" content="ca-pub-3472087135692561" />
       </head>
       <body>{children}</body>
     </html>

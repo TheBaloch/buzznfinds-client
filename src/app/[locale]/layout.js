@@ -34,18 +34,18 @@ export default async function RootLayout({ children, params: { locale } }) {
           <meta
             name="google-adsense-account"
             content="ca-pub-3472087135692561"
-          ></meta>
+          />
         </head>
-        <GoogleTagManager gtmId="GTM-KNB7NWC4" />
+        {/* <GoogleTagManager gtmId="GTM-KNB7NWC4" /> */}
         <body>
-          <noscript>
+          {/* <noscript>
             <iframe
               src="https://www.googletagmanager.com/ns.html?id=GTM-KNB7NWC4"
               height="0"
               width="0"
               style={{ display: "none", visibility: "hidden" }}
             ></iframe>
-          </noscript>
+          </noscript> */}
 
           <Navbar locale={locale} />
           {children}

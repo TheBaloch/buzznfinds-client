@@ -63,10 +63,36 @@ export default function BlogDetail({ blog, related }) {
             )}
           </div>
 
-          <div className="bg-gray-50 rounded-lg p-6 mb-12">
-            <div className="flex items-center space-x-4">
-              <h3 className="text-xl font-bold mb-2">{blog.author.name}</h3>
-              <StyledContent html={blog?.author.about} />
+          <div className="bg-gray-50 rounded-lg p-6 mb-12 shadow-sm">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200 flex-shrink-0">
+                {blog.author.avatar ? (
+                  <Image
+                    src={blog.author.avatar}
+                    alt={blog.author.name}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-600 text-2xl font-bold">
+                    {blog.author.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                )}
+              </div>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-gray-900">
+                  {blog.author.name}
+                </h3>
+                <p className="text-sm text-gray-600 mb-2">
+                  {blog.category.name} - {blog.subcategory.name}
+                </p>
+                <div className="text-sm text-gray-600">
+                  <StyledContent html={blog?.author.about} />
+                </div>
+              </div>
             </div>
           </div>
         </article>
@@ -129,7 +155,7 @@ export default function BlogDetail({ blog, related }) {
 
 const StyledContent = ({ html }) => (
   <div
-    dangerouslySetInnerHTML={{ __html: html }}
+    dangerouslySetInnerHTML={{ __html: html ? html : "" }}
     className="prose max-w-none
       [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:mb-4 [&_h1]:text-gray-900
       [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mb-3 [&_h2]:text-gray-800
